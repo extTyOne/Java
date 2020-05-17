@@ -1,74 +1,34 @@
-import jdk.swing.interop.SwingInterOpUtils;
-
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
+    static Random random = new Random();
+
     public static void main(String[] args) {
-        byte a = 12;
-        int b = 15;
-        float c = 6f;
-        char d = 12;
-        double vurazenie = a * (b + (c / d));
-        System.out.println("Значение выражения: " + vurazenie);
+        ygadaiNumber();
     }
 
-    public static void sravnenie(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
-        int b = scanner.nextInt();
-        int sum = a + b;
 
-        if (sum >= 10 & sum <= 20){
-            System.out.println("true");
-        } else {
-            System.out.println("false");
+    public static void ygadaiNumber() {
+
+        Scanner scanner = new Scanner(System.in);
+        do {
+            int randomNumb = random.nextInt(10);
+            System.out.println("Угадайте число от 0 до 9. У Вас есть 3 попытки.");
+            for (int i = 3; i > 0; i--) {
+                System.out.println("Введите ответ: (для выхода из игры, просто нажмите Enter)");
+                int answerNumb = scanner.nextInt();
+                if (answerNumb == randomNumb) {
+                    System.out.println("Вы угадали число!");
+                    break;
+                }
+                System.out.println(answerNumb > randomNumb ? "Введенное число больше " : "Введенное число меньше ");
+                System.out.println((i-1) > 0 ? " у вас осталось " + (i-1) + " попыток." : "Попытки закончились, вы проиграли.");
+            }
+            System.out.println("Повторить игру еще раз? 1 – да / 0 – нет»(1 – повторить, 0 – нет)");
         }
-
+        while (scanner.nextInt() == 1);
     }
 
-    public static void chislo(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
-
-        if (a >= 0) {
-            System.out.println("Введенное значение положительное");
-        } else {
-            System.out.println("Введенное значение отрицательное");
-        }
-    }
-
-
-    public static void otric(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
-
-        if (a < 0) {
-            System.out.println("true");
-        } else {
-            System.out.println("false");
-        }
-    }
-
-    public static void privetstvie(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.toString();
-
-        System.out.println("Привет, " + name + "!");
-    }
-
-    public static void visokosnyiGod(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int year = scanner.nextInt();
-        int ost1 = year % 4;
-        int ost2 = year % 400;
-
-        if (ost2 == 0) {
-            System.out.println("Год високосный!");
-        } else if (ost1 == 0) {
-            System.out.println("Год високосный!");
-        } else {
-            System.out.println("Год не високосный!");
-        }
-    }
 }
